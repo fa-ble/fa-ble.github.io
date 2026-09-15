@@ -10,7 +10,7 @@ https://github.com/pizzaboxer/rbxgsconhost
 
 
 If the source was ever taken down:
-https://github.com/fa-ble/fa-ble.github.io/tree/main/~2010/2008-2009/RBXGSConHost/Source
+https://github.com/fa-ble/fa-ble.github.io/tree/main/rbxgsconhost/source
 
 
 Pre-compiled version:
