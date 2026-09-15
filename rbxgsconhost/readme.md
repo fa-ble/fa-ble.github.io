@@ -45,7 +45,7 @@ It will spit out Base64, decrypt it like normal
 
 # How to (skid) this on your 2008-2009vival:
 
-I've made a RBXGSConHost Soap Handling php script, if you plan to use this to release actual revivals, please credit me
+I've made a RBXGSConHost Soap Handling php script,
 
 do not use this under any circumstances to sell/profit or gatekeep, this should be public knowledge for those who seeks to know
 
@@ -80,8 +80,6 @@ class RBXGSConHost {
     }
 
     public static function init($ip = "127.0.0.1", $port = 64989, $url = "localhost") {
-        // Validate given variables.
-        
         // ip check
         if(!filter_var($ip, FILTER_VALIDATE_IP)) {
             self::$errors[] = "Invalid IP address given.";
