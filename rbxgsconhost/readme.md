@@ -9,7 +9,7 @@ Source:
 https://github.com/pizzaboxer/rbxgsconhost
 
 
-If the source was ever taken down:
+Backup source:
 https://github.com/fa-ble/fa-ble.github.io/tree/main/rbxgsconhost/source
 
 
