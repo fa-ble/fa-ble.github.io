@@ -379,51 +379,22 @@ Render.php
 
 ```php
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"] . "/inc/config.php");
 require_once($_SERVER["DOCUMENT_ROOT"] . "/Assemblies/Roblox/Grid/Rcc/RBXGSConHost.php");
 
 use CompactInteractive\RBXGSConHost;
 
-if ($isloggedin !== 'yes') {
-    header('location: /');
-    exit;
-}
-
-$id = $_GET['ID'] ?? $_USER['id'];
+// Get parameters from GET request (default values provided)
+$headColor = (int)($_GET['headcolor'] ?? 24); // Yellow
+$torsoColor = (int)($_GET['torsocolor'] ?? 2); // Red
+$leftArmColor = (int)($_GET['leftarmcolor'] ?? 24); // Yellow
+$rightArmColor = (int)($_GET['rightarmcolor'] ?? 24); // Yellow
+$leftLegColor = (int)($_GET['leftlegcolor'] ?? 23); // Blue
+$rightLegColor = (int)($_GET['rightlegcolor'] ?? 23); // Blue
+$tshirtAsset = $_GET['tshirt'] ?? '';
 
 try {
-    $sql = $conn->prepare("SELECT * FROM users WHERE id = :id");
-    $sql->bindParam(':id', $id, PDO::PARAM_INT);
-    $sql->execute();
-    $user = $sql->fetch();
-
-    if (!$user) {
-        header("Location: /My/Character.aspx");
-        exit;
-    }
-
-    $avatarFilePath = $_SERVER['DOCUMENT_ROOT'] . "/Thumbs/" . $id . ".png";
-
     // Initialize RBXGS
     RBXGSConHost::init("127.0.0.1", 64989, "localhost");
-
-    $headColor = (int)($user['headcolor'] ?? 24); // Yellow
-    $leftArmColor = (int)($user['leftarmcolor'] ?? 24); // Yellow
-    $rightArmColor = (int)($user['rightarmcolor'] ?? 24); // Yellow
-    $leftLegColor = (int)($user['leftlegcolor'] ?? 23); // Blue
-    $rightLegColor = (int)($user['rightlegcolor'] ?? 23); // Blue
-    $torsoColor = (int)($user['torsocolor'] ?? 2); // Red
-
-    $tshirtId = (int)($user['tshirt'] ?? 0);
-    $tshirtAsset = '';
-    if ($tshirtId > 0) {
-        $stmt = $conn->prepare("SELECT asset FROM catalog WHERE id = ? AND type = 'tshirt'");
-        $stmt->execute([$tshirtId]);
-        $tshirtData = $stmt->fetch();
-        if ($tshirtData) {
-            $tshirtAsset = $tshirtData['asset'];
-        }
-    }
 
     $luaCode = 'local player = game:GetService("Players"):CreateLocalPlayer(0) ';
     $luaCode .= 'player:LoadCharacter(0) ';
@@ -435,12 +406,12 @@ try {
     $luaCode .= 'bodyColors.RightArmColor = BrickColor.new(' . $rightArmColor . ') ';
     $luaCode .= 'bodyColors.LeftLegColor = BrickColor.new(' . $leftLegColor . ') ';
     $luaCode .= 'bodyColors.RightLegColor = BrickColor.new(' . $rightLegColor . ') ';
-    
+
     if ($tshirtAsset) {
         $luaCode .= 'local shirt = Instance.new("Shirt", char) ';
         $luaCode .= 'shirt.ShirtTemplate = "' . $tshirtAsset . '" ';
     }
-    
+
     $luaCode .= 'local camera = Instance.new("Camera") ';
     $luaCode .= 'camera.CoordinateFrame = CFrame.new(0, 1.5, 8, 0, 0, -1, 0, 1, 0, 1, 0, 0) ';
     $luaCode .= 'workspace.CurrentCamera = camera ';
@@ -450,36 +421,42 @@ try {
 
     // Open environment
     $envID = RBXGSConHost::OpenEnvironment();
-    error_log("Render attempt for user $id: OpenEnvironment returned: " . ($envID ?: 'false/empty'));
 
     if ($envID) {
         // Execute script with environment ID
         $response = RBXGSConHost::Execute($envID, $luaCode);
-        error_log("Render attempt for user $id: Execute returned response length: " . strlen($response));
 
         // Extract base64 image from response
         preg_match('/(iVBOR[\w\+\/=]+)/', $response, $imgMatches);
         if (isset($imgMatches[1])) {
             $decoded = base64_decode($imgMatches[1]);
-            file_put_contents($avatarFilePath, $decoded);
-            error_log("RBXGS render successful for user $id, saved to $avatarFilePath");
+
+            // Output image directly
+            header('Content-Type: image/png');
+            echo $decoded;
         } else {
-            error_log("RBXGS render failed - no image data in response for user $id. Response: " . substr($response, 0, 1000));
+            // Return error as JSON
+            header('Content-Type: application/json');
+            echo json_encode([
+                'error' => 'Failed to extract image data',
+                'response_preview' => substr($response, 0, 500)
+            ]);
         }
 
         // Close environment
         RBXGSConHost::CloseEnvironment($envID);
-        error_log("Render attempt for user $id: Closed environment $envID");
     } else {
-        error_log("RBXGS render failed - could not open environment for user $id");
+        // Return error as JSON
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'Could not open RBXGS environment']);
     }
 
-    header("Location: /My/Character.aspx");
-    exit;
 } catch (Exception $e) {
-    error_log("General Error: " . $e->getMessage());
-    exit;
+    // Return error as JSON
+    header('Content-Type: application/json');
+    echo json_encode(['error' => $e->getMessage()]);
 }
+
 ```
 
 To use the soap correctly, I've prepared you a graphical example PHP script
