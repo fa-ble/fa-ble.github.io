@@ -61,7 +61,7 @@ class RBXGSConHost {
     public static $fullurl;
     public static array $errors = [];
 
-    public static function hasErrors() {
+    public static function haserrors() {
         if(empty(self::$errors)) {
             return true;
         }
@@ -69,7 +69,7 @@ class RBXGSConHost {
         return false;
     }
 
-    public static function getErrors() {
+    public static function geterrors() {
         foreach (self::$errors as $error) {
             return "Error: {$error} <br>";
         }
