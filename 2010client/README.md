@@ -103,7 +103,7 @@ Step 3:
 
     now where do you get workspace?????
 
-    App::CreateGame(L"44340105256", null) the client returns an IWorkspace marshaled back as a VARIANT  with  vt=9 (VT_DISPATCH). That dispatch pointer lands is the COM workspace
+    App::CreateGame(L"44340105256", null) the client returns an IWorkspace marshaled back as a VARIANT  with vt=9 (VT_DISPATCH). That dispatch pointer lands is the COM workspace
 
 
   Step 4:
