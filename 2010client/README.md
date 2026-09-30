@@ -15,6 +15,7 @@ Step 0:
 
   ExecScript -> execs a script from a file
 
+  |
   |________ you MUST feed these 2 functions a .ashx file (http://www.yoursite.com/Game/Join.ashx) 
 
   RobloxAuthenticate -> verification
