@@ -89,7 +89,7 @@ Step 3:
       
       A 10c TLD (.com, .xyz, or a digitalplat TLD)
     
-    RobloxApp.App.RobloxAuthenticate("http://domain.com/Login/Negotiate.ashx", "TICKET") <----- Negotiate.ashx must have a octet header and it must return false
+    RobloxApp.App.RobloxAuthenticate("http://domain.com/Login/Negotiate.ashx", "TICKET") <----- Negotiate.ashx must return false if you dont care
 
 
   Step 2:
