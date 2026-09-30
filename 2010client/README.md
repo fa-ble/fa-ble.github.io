@@ -74,6 +74,21 @@ Step 3:
   
   5623469 - Url
 
+  4569878: BaseUrl
+  
+  4569879: Browser (for COM)
+  
+  4569880: No3D
+
+  4543730: CPlayBrowserView
+
+  4543734: CIDEBrowserView
+
+  4543735: CBrowserView
+
+  4600414: Edit
+
+  4572466: Visit
 
   Step 0.5:
     Use RBXGSConHost from the previous tutorial to make it run a host script instead of a render script
