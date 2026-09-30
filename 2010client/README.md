@@ -45,8 +45,11 @@ Step 2B:
   Learn how to use COM and ActiveX Objects
   
   How to get COM ActiveX Objects:
+  
     Run RobloxApp.exe /regserver to expose ActiveX Objects (RobloxApp.App, IWorkspace)
+    
     Create a launcher in C++ using Interop to interact with ActiveX since its deprecated
+    
 
 Step 3: 
   All ID for RobloxApp.App:CreateGame() explained
@@ -67,6 +70,7 @@ Step 3:
 
   Step 0.5:
     Use RBXGSConHost from the previous tutorial to make it run a host script instead of a render script
+    
     Get a join script somewhere ok idc just make sure you do :CreateLocalPlayer(0), no number bigger
   
   Step 1:
