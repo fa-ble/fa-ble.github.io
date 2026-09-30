@@ -18,9 +18,13 @@ Step 0:
   RobloxAuthenticate -> verification
 
 Step 0.5:
+
   Do not patch:
+  
     Trust Check
+    
     Player Ids and Names
+    
     Extranet
 
 Step 1:
