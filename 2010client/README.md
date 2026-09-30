@@ -4,6 +4,7 @@ How to make your revival have working (not secure) clients speedrun any %%%%%
 
 Unlike the other tutorial where you were given a code, you won't get one here
 
+
 Step 0:
   what you're gonna need or wanna know
   
@@ -19,6 +20,7 @@ Step 0:
 
   RobloxAuthenticate -> verification
 
+
 Step 0.5:
 
   Do not patch:
@@ -29,9 +31,11 @@ Step 0.5:
     
     Extranet
 
+
 Step 1:
 
   Learn how URIs work to be able to launch RobloxApp.exe from the browser
+
 
 Step 2:
 
@@ -40,6 +44,7 @@ Step 2:
     RobloxApp.exe -script dofile("link to join script")
 
   If you do this then you gotta patch extranet and it might allow people to self-patch a random 2010 client to hop onto your servers and exploit
+
 
 Step 2B: 
   Learn how to use COM and ActiveX Objects
@@ -68,10 +73,12 @@ Step 3:
   
   5623469 - Url
 
+
   Step 0.5:
     Use RBXGSConHost from the previous tutorial to make it run a host script instead of a render script
     
     Get a join script somewhere ok idc just make sure you do :CreateLocalPlayer(0), no number bigger
+
   
   Step 1:
     
@@ -83,9 +90,11 @@ Step 3:
     
     RobloxApp.App.RobloxAuthenticate("http://domain.com/Login/Negotiate.ashx", "TICKET") <----- Negotiate.ashx must have a octet header and it must return false
 
+
   Step 2:
     
     $Game = RobloxApp.App:CreateGame(44340105256) <---- mandatory number, also exposes game stuff
+
 
   Step 3:
 
@@ -94,6 +103,7 @@ Step 3:
     now where do you get workspace?????
 
     App::CreateGame(L"44340105256", null) the client returns an IWorkspace marshaled back as a VARIANT  with  vt=9 (VT_DISPATCH). That dispatch pointer lands is the COM workspace
+
 
   Step 4:
 
