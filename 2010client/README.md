@@ -8,17 +8,17 @@ Unlike the other tutorial where you were given a code, you won't get one here
 Step 0:
   what you're gonna need or wanna know
   
-  CreateGame(44340105256) -> creates game
+  CreateGame(44340105256):> creates game
   
-  StartGame(any int) -> starts game
+  StartGame(any int):> starts game
 
-  ExecUrlScript -> execs a script from a url
+  ExecUrlScript:> execs a script from a url
 
-  ExecScript -> execs a script from a file
+  ExecScript:> execs a script from a file
 
   [________> you MUST feed these 2 functions a .ashx file (http://www.yoursite.com/Game/Join.ashx) 
 
-  RobloxAuthenticate -> verification
+  RobloxAuthenticate:> verification
 
 
 Step 0.5:
@@ -41,7 +41,7 @@ Step 2:
 
   Quick and simple way to connect to a server:
 
-    RobloxApp.exe -script dofile("link to join script")
+    RobloxApp.exe:script dofile("link to join script")
 
   If you do this then you gotta patch extranet and it might allow people to self-patch a random 2010 client to hop onto your servers and exploit
 
@@ -60,23 +60,23 @@ Step 3:
 
   All ID for RobloxApp.App:CreateGame() explained
   
-  44340105256 - Used for creating a game
+  44340105256: Used for creating a game
   
-  4569876 - Script
+  4569876: Script
   
-  4631452 - Script
+  4631452: Script
   
-  5689090 - Script
+  5689090: Script
   
-  4589421 - url
+  4589421: url
   
-  5723392 - Url
+  5723392: Url
   
-  5623469 - Url
+  5623469: Url
 
   4569878: BaseUrl
   
-  4569879: Browser (for COM)
+  4569879: Browser 
   
   4569880: No3D
 
